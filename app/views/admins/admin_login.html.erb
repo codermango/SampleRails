@@ -1,0 +1,31 @@
+<% if admin_logged_in? %>
+    <h1>All the users</h1>
+    <div class='row'>
+        <% @user_list.each do |user| %>
+        <div class="col-md-4" style="text-align: right;">
+            <%= user.name %>
+        </div>
+        <div class="col-md-4">
+            <%= user.email %>
+        </div>
+        <div class="col-md-4">
+            <%= link_to "Delete", admin_login_path(:user => user), method: :delete, data: { confirm: 'Are you sure?' }%>
+        </div>
+        <% end %>
+    </div>
+<% else %>
+    <h1>Admin Login</h1>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <%= form_for(:admin) do |f| %>
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control' %>
+
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
+
+                <%= f.submit "Log in", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+<% end %>

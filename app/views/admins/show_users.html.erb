@@ -1,0 +1,17 @@
+<h1>All the users</h1>
+
+<div class='row'>
+    <% @user_list.each do |user| %>
+        <div class="col-md-4" style="text-align: right;">
+            <%= user.name %>
+        </div>
+        <div class="col-md-4">
+            <%= user.email %>
+        </div>
+        <div class="col-md-4">
+            <%= link_to "Delete", admin_login_path(:user => user), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+    <% end %>
+</div>
+
+

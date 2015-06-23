@@ -6,7 +6,13 @@
         <ul>
             <li><%= link_to "About", about_path %></li>
             <li><%= link_to "Contact", contact_path %></li>
-            <li><%= link_to "Admin", '#' %></li>
+            <% if admin_logged_in? %>
+                <li><%= link_to "Admin Logout", admin_logout_path, method: :delete %></li>
+                <li><%= link_to "Admin Page", admin_login_path %></li>
+            <% else %>
+                <li><%= link_to "Admin", admin_login_path %></li>
+            <% end %>
+            
         </ul>
     </nav>
 </footer>
